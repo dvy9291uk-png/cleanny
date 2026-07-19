@@ -1,0 +1,22 @@
+<%- include('partials/head', { title: 'My bookings | Cleanny' }) %>
+<section class="section">
+  <div class="wrap">
+    <p class="eyebrow">My account</p>
+    <h1>Hello, <%= user.name.split(' ')[0] %></h1>
+    <% if (!bookings.length) { %>
+      <p class="lead">No bookings yet — your next clean is two minutes away.</p>
+      <a class="btn btn-solid" href="/services">Book a clean</a>
+    <% } else { %>
+      <div class="table-wrap"><table>
+        <thead><tr><th>Ref</th><th>Service</th><th>Date</th><th>Slot</th><th>Est. price</th><th>Status</th></tr></thead>
+        <tbody>
+          <% bookings.forEach(b => { %>
+            <tr><td><%= b.ref %></td><td><%= b.service_name %></td><td><%= b.date %></td><td><%= b.time_slot %></td><td><%= b.est_price ? '£'+b.est_price : 'Quote' %></td><td><span class="status s-<%= b.status %>"><%= b.status %></span></td></tr>
+          <% }) %>
+        </tbody>
+      </table></div>
+    <% } %>
+  </div>
+</section>
+<%- include('partials/foot') %>
+
