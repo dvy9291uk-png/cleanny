@@ -16,4 +16,8 @@ if (hoursSel) {
   const out = document.getElementById('estVal');
   hoursSel.addEventListener('change', () => { out.textContent = '£' + (rate * parseInt(hoursSel.value, 10)); });
 }
-
+// scroll reveal
+const io = new IntersectionObserver(es => es.forEach(e => {
+  if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+}), { threshold: 0.12 });
+document.querySelectorAll('.rv').forEach(el => io.observe(el));
