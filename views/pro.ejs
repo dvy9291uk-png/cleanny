@@ -1,0 +1,32 @@
+<%- include('partials/head', { title: 'Join as a Professional | Cleanny' }) %>
+<section class="section">
+  <div class="wrap svc-detail">
+    <div class="svc-info">
+      <p class="eyebrow">For professionals</p>
+      <h1>Steady local work. Weekly payouts.</h1>
+      <p class="lead">Cleanny sends vetted professionals consistent bookings with clear job details — no chasing clients, no unpaid invoices.</p>
+      <ul class="hero-trust">
+        <li>Flexible hours — you set your availability</li>
+        <li>Weekly payments, every week</li>
+        <li>Verified customers &amp; clear job briefs</li>
+        <li>Support team behind every job</li>
+      </ul>
+    </div>
+    <form class="card book-form" method="post" action="/pro">
+      <h2>Apply in 60 seconds</h2>
+      <% if (typeof done !== 'undefined') { %><p class="form-ok">Application received — we'll be in touch within 2 working days.</p><% } %>
+      <% if (typeof error !== 'undefined') { %><p class="form-error"><%= error %></p><% } %>
+      <div class="grid-2">
+        <label>Full name<input name="name" required></label>
+        <label>Phone<input name="phone" type="tel" required></label>
+      </div>
+      <label>Email<input name="email" type="email" required></label>
+      <label>Area you cover<input name="area" placeholder="e.g. Watford, Harrow, North London" required></label>
+      <label>Services you offer<input name="services" placeholder="e.g. domestic, end of tenancy, carpets" required></label>
+      <label>Experience (optional)<textarea name="experience" rows="3" placeholder="Years of experience, equipment, DBS check…"></textarea></label>
+      <button class="btn btn-solid btn-lg" type="submit">Send application</button>
+    </form>
+  </div>
+</section>
+<%- include('partials/foot') %>
+
