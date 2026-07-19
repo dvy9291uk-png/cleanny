@@ -2,7 +2,7 @@
 <section class="section">
   <div class="wrap svc-detail">
     <div class="svc-info">
-      <img src="<%= service.image %>" alt="" width="120" height="120">
+      <img class="icon" src="<%= service.image %>" alt="" width="110" height="110">
       <p class="eyebrow"><%= service.category %></p>
       <h1><%= service.name %></h1>
       <p class="lead"><%= service.long_desc %></p>
@@ -15,6 +15,7 @@
           <strong>Custom quote</strong><span> — send your booking and we'll confirm a price before any work starts</span>
         <% } %>
       </div>
+      <img class="svc-photo" src="<%= service.category==='Commercial' ? '/img/photo-office.jpg' : (service.slug.indexOf('tenancy')>-1 || service.slug.indexOf('deep')>-1 ? '/img/photo-bathroom.jpg' : '/img/photo-duo.jpg') %>" alt="Cleanny professional at work" loading="lazy">
       <ul class="hero-trust">
         <li>Vetted &amp; insured professional</li>
         <li>All equipment &amp; products included</li>
@@ -61,4 +62,3 @@
   </div>
 </section>
 <%- include('partials/foot') %>
-
