@@ -1,0 +1,16 @@
+<%- include('partials/head', { title: 'Booking confirmed | Cleanny' }) %>
+<section class="section">
+  <div class="wrap narrow center">
+    <svg class="big-tick" viewBox="0 0 64 64" width="72" height="72" aria-hidden="true"><circle cx="32" cy="32" r="30" fill="var(--leaf)"/><path d="M20 33l8 8 16-18" fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    <h1>Booking confirmed</h1>
+    <p class="lead">Your reference is <strong><%= ref %></strong>. We've logged your <strong><%= service.name %></strong> for <strong><%= date %></strong>, <strong><%= time_slot %></strong>.</p>
+    <% if (est) { %><p class="lead">Estimated total: <strong>£<%= est %></strong> — payable after the clean.</p><% } %>
+    <p>Our team will confirm your professional shortly. Need to change anything? Call us or reply to your confirmation email.</p>
+    <div class="hero-actions center-actions">
+      <a class="btn btn-solid" href="/services">Book another service</a>
+      <a class="btn btn-outline" href="/">Back to home</a>
+    </div>
+  </div>
+</section>
+<%- include('partials/foot') %>
+
