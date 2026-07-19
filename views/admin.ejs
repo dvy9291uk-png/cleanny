@@ -1,0 +1,110 @@
+<%- include('partials/head', { title: 'Admin | Cleanny' }) %>
+<section class="section admin">
+  <div class="wrap">
+    <p class="eyebrow">Admin dashboard</p>
+    <h1>Cleanny control room</h1>
+
+    <div class="stat-row">
+      <div class="stat"><strong><%= stats.bookings %></strong><span>Total bookings</span></div>
+      <div class="stat"><strong><%= stats.newBookings %></strong><span>New / unconfirmed</span></div>
+      <div class="stat"><strong>£<%= Math.round(stats.revenue) %></strong><span>Confirmed revenue</span></div>
+      <div class="stat"><strong><%= stats.pros %></strong><span>New pro applications</span></div>
+    </div>
+
+    <h2 id="bookings">Bookings</h2>
+    <div class="table-wrap"><table>
+      <thead><tr><th>Ref</th><th>Customer</th><th>Service</th><th>Date / slot</th><th>Postcode</th><th>Est.</th><th>Status</th><th></th></tr></thead>
+      <tbody>
+        <% bookings.forEach(b => { %>
+        <tr>
+          <td><%= b.ref %></td>
+          <td><%= b.name %><br><small><%= b.phone %> · <%= b.email %></small></td>
+          <td><%= b.service_name %></td>
+          <td><%= b.date %><br><small><%= b.time_slot %></small></td>
+          <td><%= b.postcode %></td>
+          <td><%= b.est_price ? '£'+b.est_price : '—' %></td>
+          <td><span class="status s-<%= b.status %>"><%= b.status %></span></td>
+          <td>
+            <form method="post" action="/admin/bookings/<%= b.id %>/status" class="inline-form">
+              <select name="status" onchange="this.form.submit()">
+                <% ['new','confirmed','completed','cancelled'].forEach(st => { %>
+                  <option value="<%= st %>" <%= b.status===st?'selected':'' %>><%= st %></option>
+                <% }) %>
+              </select>
+            </form>
+          </td>
+        </tr>
+        <% }) %>
+        <% if (!bookings.length) { %><tr><td colspan="8">No bookings yet.</td></tr><% } %>
+      </tbody>
+    </table></div>
+
+    <h2 id="services">Services</h2>
+    <div class="table-wrap"><table>
+      <thead><tr><th>Name</th><th>Type</th><th>Price</th><th>Live</th><th></th></tr></thead>
+      <tbody>
+        <% services.forEach(s => { %>
+        <tr>
+          <form method="post" action="/admin/services/<%= s.id %>/update">
+            <td><input name="name" value="<%= s.name %>"></td>
+            <td><select name="pricing_type">
+              <% ['fixed','hourly','quote'].forEach(t => { %><option value="<%= t %>" <%= s.pricing_type===t?'selected':'' %>><%= t %></option><% }) %>
+            </select></td>
+            <td><input name="price" value="<%= s.price ?? '' %>" style="width:80px"></td>
+            <td><input type="checkbox" name="active" <%= s.active?'checked':'' %>></td>
+            <td><button class="btn btn-ghost" type="submit">Save</button></td>
+          </form>
+        </tr>
+        <% }) %>
+      </tbody>
+    </table></div>
+
+    <details class="add-svc">
+      <summary>+ Add a new service</summary>
+      <form method="post" action="/admin/services" class="book-form card">
+        <div class="grid-2">
+          <label>Name<input name="name" required></label>
+          <label>Category<input name="category" value="Cleaning"></label>
+        </div>
+        <div class="grid-2">
+          <label>Pricing type
+            <select name="pricing_type"><option>fixed</option><option>hourly</option><option>quote</option></select>
+          </label>
+          <label>Price (£)<input name="price" type="number" step="0.5"></label>
+        </div>
+        <label>Min hours (hourly only)<input name="min_hours" type="number" value="0"></label>
+        <label>Short description<input name="short_desc"></label>
+        <label>Long description<textarea name="long_desc" rows="3"></textarea></label>
+        <button class="btn btn-solid" type="submit">Add service</button>
+      </form>
+    </details>
+
+    <h2 id="pros">Professional applications</h2>
+    <div class="table-wrap"><table>
+      <thead><tr><th>Name</th><th>Contact</th><th>Area</th><th>Services</th><th>Status</th><th></th></tr></thead>
+      <tbody>
+        <% pros.forEach(p => { %>
+        <tr>
+          <td><%= p.name %></td>
+          <td><%= p.phone %><br><small><%= p.email %></small></td>
+          <td><%= p.area %></td>
+          <td><%= p.services %></td>
+          <td><span class="status s-<%= p.status %>"><%= p.status %></span></td>
+          <td>
+            <form method="post" action="/admin/pros/<%= p.id %>/status" class="inline-form">
+              <select name="status" onchange="this.form.submit()">
+                <% ['new','contacted','approved','rejected'].forEach(st => { %>
+                  <option value="<%= st %>" <%= p.status===st?'selected':'' %>><%= st %></option>
+                <% }) %>
+              </select>
+            </form>
+          </td>
+        </tr>
+        <% }) %>
+        <% if (!pros.length) { %><tr><td colspan="6">No applications yet.</td></tr><% } %>
+      </tbody>
+    </table></div>
+  </div>
+</section>
+<%- include('partials/foot') %>
+
