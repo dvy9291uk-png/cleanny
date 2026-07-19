@@ -1,0 +1,64 @@
+<%- include('partials/head', { title: service.name + ' | Cleanny', desc: service.short_desc }) %>
+<section class="section">
+  <div class="wrap svc-detail">
+    <div class="svc-info">
+      <img src="<%= service.image %>" alt="" width="120" height="120">
+      <p class="eyebrow"><%= service.category %></p>
+      <h1><%= service.name %></h1>
+      <p class="lead"><%= service.long_desc %></p>
+      <div class="price-box">
+        <% if (service.pricing_type==='fixed') { %>
+          <strong>£<%= service.price %></strong><span> fixed price</span>
+        <% } else if (service.pricing_type==='hourly') { %>
+          <strong>£<%= service.price %>/hr</strong><span> · minimum <%= service.min_hours %> hours</span>
+        <% } else { %>
+          <strong>Custom quote</strong><span> — send your booking and we'll confirm a price before any work starts</span>
+        <% } %>
+      </div>
+      <ul class="hero-trust">
+        <li>Vetted &amp; insured professional</li>
+        <li>All equipment &amp; products included</li>
+        <li>48-hour re-clean guarantee</li>
+      </ul>
+    </div>
+
+    <form class="card book-form" method="post" action="/book/<%= service.slug %>">
+      <h2>Book this service</h2>
+      <% if (typeof error !== 'undefined') { %><p class="form-error"><%= error %></p><% } %>
+      <div class="grid-2">
+        <label>Full name<input name="name" required autocomplete="name"></label>
+        <label>Phone<input name="phone" type="tel" required autocomplete="tel"></label>
+      </div>
+      <label>Email<input name="email" type="email" required autocomplete="email"></label>
+      <div class="grid-2">
+        <label>Address<input name="address" required autocomplete="street-address"></label>
+        <label>Postcode<input name="postcode" required autocomplete="postal-code"></label>
+      </div>
+      <div class="grid-2">
+        <label>Date<input name="date" type="date" required min="<%= new Date().toISOString().slice(0,10) %>"></label>
+        <label>Time slot
+          <select name="time_slot" required>
+            <% slots.forEach(t => { %><option><%= t %></option><% }) %>
+          </select>
+        </label>
+      </div>
+      <% if (service.pricing_type==='hourly') { %>
+        <label>Hours needed
+          <select name="hours" id="hoursSel" data-rate="<%= service.price %>">
+            <% for (let h=service.min_hours; h<=8; h++) { %><option value="<%= h %>"><%= h %> hours</option><% } %>
+          </select>
+        </label>
+      <% } %>
+      <label>Notes for your cleaner (optional)<textarea name="notes" rows="3" placeholder="Access details, focus areas, pets…"></textarea></label>
+      <div class="est-line" id="estLine">
+        <% if (service.pricing_type==='fixed') { %>Estimated total: <strong>£<%= service.price %></strong>
+        <% } else if (service.pricing_type==='hourly') { %>Estimated total: <strong id="estVal">£<%= service.price * service.min_hours %></strong>
+        <% } else { %>We'll confirm your quote by email before the visit.<% } %>
+      </div>
+      <button class="btn btn-solid btn-lg" type="submit">Confirm booking</button>
+      <p class="small-note">No payment taken now — pay after the clean by card or bank transfer.</p>
+    </form>
+  </div>
+</section>
+<%- include('partials/foot') %>
+
