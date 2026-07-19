@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title><%= typeof title !== 'undefined' ? title : 'Cleanny | Book Trusted Cleaners Online' %></title>
+<meta name="description" content="<%= typeof desc !== 'undefined' ? desc : 'Cleanny — book vetted, insured cleaning professionals online in minutes. Domestic, end of tenancy, deep cleaning and more. Transparent prices, 7 days a week.' %>">
+<link rel="icon" href="/img/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+<header class="site-header">
+  <nav class="nav wrap">
+    <a class="brand" href="/">
+      <svg class="brand-mark" viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="18" fill="var(--leaf)"/><path d="M27.5 14.5c-2.2-2.4-6-2.9-8.9-1-3.4 2.2-4.3 6.8-2 10.1 2.2 3.3 6.8 4.2 10.1 2" fill="none" stroke="#fff" stroke-width="3.4" stroke-linecap="round"/><circle cx="29" cy="12" r="2.4" fill="var(--citrus)"/></svg>
+      <span>cleanny</span>
+    </a>
+    <button class="nav-toggle" aria-label="Menu" onclick="document.body.classList.toggle('nav-open')"><span></span><span></span><span></span></button>
+    <div class="nav-links">
+      <a href="/services" class="<%= page==='services'?'on':'' %>">Services</a>
+      <a href="/faqs" class="<%= page==='faqs'?'on':'' %>">FAQs</a>
+      <a href="/pro" class="<%= page==='pro'?'on':'' %>">For Professionals</a>
+      <a href="/contact" class="<%= page==='contact'?'on':'' %>">Contact</a>
+      <% if (user) { %>
+        <a href="<%= user.role==='admin' ? '/admin' : '/account' %>" class="btn btn-ghost"><%= user.role==='admin' ? 'Dashboard' : 'My bookings' %></a>
+        <form method="post" action="/signout" class="inline-form"><button class="linklike" type="submit">Sign out</button></form>
+      <% } else { %>
+        <a href="/signin" class="btn btn-ghost">Sign in</a>
+        <a href="/services" class="btn btn-solid">Book a clean</a>
+      <% } %>
+    </div>
+  </nav>
+</header>
+<main>
+
