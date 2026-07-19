@@ -1,10 +1,10 @@
-<%- include('partials/head', { title: 'Cleanny | Book Trusted Cleaners Online in Minutes' }) %>
+<%- include('partials/head', { title: 'Cleanny | Clean Spaces, Brighter Tomorrows' }) %>
 
 <section class="hero">
   <div class="wrap hero-grid">
     <div class="hero-copy">
       <p class="eyebrow">Vetted &amp; insured cleaning professionals</p>
-      <h1>Your home, <span class="wipe">spotless</span>.<br>Booked in minutes.</h1>
+      <h1>Clean spaces,<br><span class="wipe">brighter</span> tomorrows.</h1>
       <p class="lead">Cleanny connects you with trusted local cleaners for everything from a weekly tidy to a full end of tenancy deep clean. Clear prices upfront. Available 7 days a week.</p>
       <div class="hero-actions">
         <a class="btn btn-solid btn-lg" href="/services">Book a clean</a>
@@ -16,8 +16,12 @@
         <li>Free reschedules up to 24h before</li>
       </ul>
     </div>
-    <div class="hero-art">
-      <img src="/img/hero.svg" alt="Cleanny professional at work" width="520" height="440">
+    <div class="hero-photo">
+      <img src="/img/photo-portrait.jpg" alt="Cleanny professional with eco-friendly cleaning products" width="1100" height="880">
+      <div class="hero-badge">
+        <span class="badge-dot">✨</span>
+        <div><strong>48h guarantee</strong><span>Free re-clean if you're not happy</span></div>
+      </div>
     </div>
   </div>
 </section>
@@ -25,10 +29,10 @@
 <section class="section">
   <div class="wrap">
     <p class="eyebrow">Our services</p>
-    <h2>Choose the clean your home needs</h2>
+    <h2 class="rv">Choose the clean your home needs</h2>
     <div class="svc-grid">
       <% services.forEach(s => { %>
-        <a class="svc-card" href="/services/<%= s.slug %>">
+        <a class="svc-card rv" href="/services/<%= s.slug %>">
           <img src="<%= s.image %>" alt="" width="96" height="96">
           <div>
             <h3><%= s.name %></h3>
@@ -45,43 +49,61 @@
 
 <section class="section section-alt">
   <div class="wrap">
-    <p class="eyebrow">How it works</p>
-    <h2>Simple from start to finish</h2>
-    <div class="steps">
-      <div class="step"><span class="step-dot">1</span><h3>Pick your service</h3><p>Every service is clearly described with its price shown upfront — fixed or hourly.</p></div>
-      <div class="step"><span class="step-dot">2</span><h3>Choose date &amp; time</h3><p>Morning, afternoon or evening slots, 7 days a week including weekends.</p></div>
-      <div class="step"><span class="step-dot">3</span><h3>Confirm your booking</h3><p>Add your address and any instructions, confirm in seconds, get your booking reference instantly.</p></div>
-      <div class="step"><span class="step-dot">4</span><h3>Relax</h3><p>Your vetted professional arrives on time and gets the job done to a high standard.</p></div>
+    <p class="eyebrow">Real standards</p>
+    <div class="photo-band">
+      <div>
+        <h2 class="rv">Every room, done properly</h2>
+        <p class="lead rv">From bathrooms descaled and sanitised to bedrooms made hotel-fresh — your Cleanny professional works to a checklist, in uniform, with professional products included.</p>
+        <a class="btn btn-solid rv" href="/services">See all services</a>
+      </div>
+      <div class="photo-stack">
+        <img class="rv" src="/img/photo-bathroom.jpg" alt="Cleanny professional deep cleaning a bathroom" loading="lazy">
+        <img class="rv" src="/img/photo-duo.jpg" alt="Cleanny professionals cleaning a living room and bedroom" loading="lazy">
+      </div>
     </div>
   </div>
 </section>
 
 <section class="section">
+  <div class="wrap">
+    <p class="eyebrow">How it works</p>
+    <h2 class="rv">Simple from start to finish</h2>
+    <div class="steps">
+      <div class="step rv"><span class="step-dot">1</span><h3>Pick your service</h3><p>Every service is clearly described with its price shown upfront — fixed or hourly.</p></div>
+      <div class="step rv"><span class="step-dot">2</span><h3>Choose date &amp; time</h3><p>Morning, afternoon or evening slots, 7 days a week including weekends.</p></div>
+      <div class="step rv"><span class="step-dot">3</span><h3>Confirm your booking</h3><p>Add your address and any instructions, confirm in seconds, get your booking reference instantly.</p></div>
+      <div class="step rv"><span class="step-dot">4</span><h3>Relax</h3><p>Your vetted professional arrives on time and gets the job done to a high standard.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="section section-alt">
   <div class="wrap why-grid">
     <div>
       <p class="eyebrow">Why Cleanny</p>
-      <h2>Booking a cleaner shouldn't feel like a chore</h2>
-      <p class="lead">No phone tag, no vague quotes, no strangers without checks. Just a clean home, arranged in under two minutes.</p>
-      <a class="btn btn-solid" href="/services">See prices &amp; book</a>
+      <h2 class="rv">Booking a cleaner shouldn't feel like a chore</h2>
+      <p class="lead rv">No phone tag, no vague quotes, no strangers without checks. Just a clean home, arranged in under two minutes.</p>
+      <a class="btn btn-solid rv" href="/services">See prices &amp; book</a>
     </div>
     <div class="why-cards">
-      <div class="why-card"><h3>Vetted professionals</h3><p>Every cleaner is identity-verified, background-checked and review-monitored.</p></div>
-      <div class="why-card"><h3>Transparent pricing</h3><p>Fixed prices or clear hourly rates shown before you book. No surprises.</p></div>
-      <div class="why-card"><h3>Instant online booking</h3><p>Book any clean in under 2 minutes, day or night — no calls needed.</p></div>
-      <div class="why-card"><h3>Satisfaction guarantee</h3><p>Not happy? Tell us within 48 hours and we'll re-clean the affected areas free.</p></div>
+      <div class="why-card rv"><h3>Vetted professionals</h3><p>Every cleaner is identity-verified, background-checked and review-monitored.</p></div>
+      <div class="why-card rv"><h3>Transparent pricing</h3><p>Fixed prices or clear hourly rates shown before you book. No surprises.</p></div>
+      <div class="why-card rv"><h3>Instant online booking</h3><p>Book any clean in under 2 minutes, day or night — no calls needed.</p></div>
+      <div class="why-card rv"><h3>Satisfaction guarantee</h3><p>Not happy? Tell us within 48 hours and we'll re-clean the affected areas free.</p></div>
     </div>
   </div>
 </section>
 
 <section class="section section-pine">
-  <div class="wrap pro-cta">
+  <div class="wrap pro-cta-photo">
     <div>
-      <h2>Cleaning professional? Grow with Cleanny.</h2>
-      <p>Steady local bookings, flexible hours and weekly payouts — join our growing network of vetted professionals.</p>
+      <h2 class="rv">Cleaning professional? Grow with Cleanny.</h2>
+      <p class="rv">Steady local bookings, flexible hours and weekly payouts — join our growing network of vetted professionals in full Cleanny uniform and kit.</p>
+      <br>
+      <a class="btn btn-citrus btn-lg rv" href="/pro">Apply as a professional</a>
     </div>
-    <a class="btn btn-citrus btn-lg" href="/pro">Apply as a professional</a>
+    <img class="rv" src="/img/photo-office.jpg" alt="Cleanny professional cleaning a commercial space" loading="lazy">
   </div>
 </section>
 
 <%- include('partials/foot') %>
-
