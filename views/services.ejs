@@ -1,0 +1,29 @@
+<%- include('partials/head', { title: 'Services & Prices | Cleanny' }) %>
+<section class="section page-head">
+  <div class="wrap">
+    <p class="eyebrow">Services &amp; prices</p>
+    <h1>Every clean, one place</h1>
+    <div class="filter-row">
+      <button class="chip on" data-cat="all">All</button>
+      <% cats.forEach(c => { %><button class="chip" data-cat="<%= c %>"><%= c %></button><% }) %>
+    </div>
+  </div>
+</section>
+<section class="section" style="padding-top:0">
+  <div class="wrap svc-grid" id="svcGrid">
+    <% services.forEach(s => { %>
+      <a class="svc-card" data-cat="<%= s.category %>" href="/services/<%= s.slug %>">
+        <img src="<%= s.image %>" alt="" width="96" height="96">
+        <div>
+          <h3><%= s.name %></h3>
+          <p><%= s.short_desc %></p>
+          <span class="price-tag">
+            <% if (s.pricing_type==='fixed') { %>From £<%= s.price %><% } else if (s.pricing_type==='hourly') { %>£<%= s.price %>/hr · min <%= s.min_hours %> hrs<% } else { %>Custom quote<% } %>
+          </span>
+        </div>
+      </a>
+    <% }) %>
+  </div>
+</section>
+<%- include('partials/foot') %>
+
