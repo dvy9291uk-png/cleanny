@@ -65,9 +65,9 @@ h3{font-size:1.1rem;font-weight:700}
 .spark:nth-of-type(12){top:75%;left:82%;animation-delay:2.4s}
 @keyframes twinkle{0%,100%{opacity:0;transform:scale(.4) rotate(0deg)}50%{opacity:.9;transform:scale(1) rotate(90deg)}}
 
-/* ---------- scroll reveal ---------- */
-.rv{opacity:0;transform:translateY(26px);transition:opacity .7s ease, transform .7s cubic-bezier(.2,.7,.2,1)}
-.rv.in{opacity:1;transform:none}
+/* ---------- scroll reveal (safe: content visible unless JS active) ---------- */
+html.js .rv{opacity:0;transform:translateY(26px);transition:opacity .7s ease, transform .7s cubic-bezier(.2,.7,.2,1)}
+html.js .rv.in{opacity:1;transform:none}
 
 @media (prefers-reduced-motion:reduce){
   .bg-anim,.spark{display:none}
