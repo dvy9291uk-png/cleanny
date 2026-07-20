@@ -16,8 +16,16 @@ if (hoursSel) {
   const out = document.getElementById('estVal');
   hoursSel.addEventListener('change', () => { out.textContent = '£' + (rate * parseInt(hoursSel.value, 10)); });
 }
-// scroll reveal
-const io = new IntersectionObserver(es => es.forEach(e => {
-  if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
-}), { threshold: 0.12 });
-document.querySelectorAll('.rv').forEach(el => io.observe(el));
+// scroll reveal — with full fallbacks so content can never stay hidden
+const reveal = el => el.classList.add('in');
+const all = document.querySelectorAll('.rv');
+if ('IntersectionObserver' in window) {
+  const io = new IntersectionObserver(es => es.forEach(e => {
+    if (e.isIntersecting) { reveal(e.target); io.unobserve(e.target); }
+  }), { threshold: 0.12 });
+  all.forEach(el => io.observe(el));
+} else {
+  all.forEach(reveal);
+}
+// safety net: whatever happens, everything is visible after 1.8s
+setTimeout(() => all.forEach(reveal), 1800);
